@@ -1,0 +1,28 @@
+# we want to define starting/entry points for the crawler. this should be as manual as it gets for the crawler
+# what we care about in our seed: domain, start_url
+
+seeds:
+  - domain: "docs.nvidia.com"
+    start_url: "https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/index.html"
+  - domain: "docs.docker.com"
+    start_url: "https://docs.docker.com/get-started/overview/"
+  - domain: "docs.pytorch.org"
+    start_url: "https://pytorch.org/docs/stable/index.html"
+  - domain: "platform.openai.com"
+    start_url: "https://platform.openai.com/docs/overview"
+  - domain: "tensorflow.org"
+    start_url: "https://www.tensorflow.org/api_docs/python/tf/keras"
+  - domain: "docs.aws.amazon.com"
+    start_url: "https://docs.aws.amazon.com"
+  - domain: "supabase.com"
+    start_url: "https://supabase.com/docs"
+  - domain: "learning.postman.com"
+    start_url: "https://learning.postman.com/docs/introduction/overview"
+  - domain: "docs.mongodb.com"
+    start_url: "https://www.mongodb.com/docs/"
+  - domain: "platform.claude.com"
+    start_url: "https://platform.claude.com/docs/en/home"
+  - domain: "docs.pinecone.io"
+    start_url: "https://docs.pinecone.io/guides/get-started/overview"
+
+  
