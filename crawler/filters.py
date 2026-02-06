@@ -57,11 +57,11 @@ def is_valid_doc_url(url:str) -> bool:
         return False
     if not ALLOWED_PATHS.search(p.path):
         return False
-    if p.path.endswith(BAD_EXTENSIONS):
+    if BAD_EXTENSIONS.search(p.path):
         return False
     
     lower_path = p.path.lower()
-    if any(bad in lower_path for bad in BAD_PATHS):
+    if BAD_PATHS.search(lower_path):
         return False
     
     return bool(ALLOWED_PATHS.search(lower_path))

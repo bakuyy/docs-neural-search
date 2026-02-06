@@ -2,11 +2,14 @@
 from __future__ import annotations
 import gzip
 import io
+import logging
+import time
 import requests
 import xml.etree.ElementTree as ET
 from urllib.parse import urljoin
 
-HEADERS = {"User-Agent": ""}
+HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; neural-search-engine/0.1)"}
+logger = logging.getLogger(__name__)
 
 def candidate_sitemap_urls(start_url: str) -> list[str]:
     """
@@ -20,7 +23,12 @@ def candidate_sitemap_urls(start_url: str) -> list[str]:
         urljoin(base, "sitemap/sitemap.xml"),
     ]
 
-def fetch_bytes(url:str, timeout:float = 10.0) -> tuple[int, bytes, str]:
+def fetch_bytes(
+    url: str,
+    timeout: float = 10.0,
+    retries: int = 2,
+    backoff_seconds: float = 1.5,
+) -> tuple[int, bytes, str]:
     """ 
     given a URL, we will perform a GET request and return the status code, content, and content type in raw bytes (with min metadata)
     specifically: it returns:
@@ -28,12 +36,29 @@ def fetch_bytes(url:str, timeout:float = 10.0) -> tuple[int, bytes, str]:
         - raw bytes of the content
         - content type 
     """
-    
-    r = requests.get(url, headers=HEADERS, timeout=timeout, allow_redirects=True)
-    ctype = r.headers.get("Content-Type", "").lower()
-    return r.status_code, r.content, ctype
+    last_exc: Exception | None = None
+    for attempt in range(retries + 1):
+        try:
+            r = requests.get(url, headers=HEADERS, timeout=timeout, allow_redirects=True)
+            ctype = r.headers.get("Content-Type", "").lower()
+            return r.status_code, r.content, ctype
+        except requests.RequestException as exc:
+            last_exc = exc
+            if attempt >= retries:
+                break
+            wait = backoff_seconds * (2**attempt)
+            logger.warning(
+                "Request failed (%s). Retrying in %.1fs: %s",
+                exc.__class__.__name__,
+                wait,
+                url,
+            )
+            time.sleep(wait)
+    if last_exc:
+        raise last_exc
+    raise RuntimeError("fetch_bytes failed without an exception")
 
-def parse_sitemap(cml_bytes: bytes) -> list[str]:
+def parse_sitemap(xml_bytes: bytes) -> tuple[list[str], bool]:
     """
     supports <urlset> and <sitemapindex> formats
     returns list of urls or nested sitemap urls
@@ -58,9 +83,9 @@ def parse_sitemap(cml_bytes: bytes) -> list[str]:
         for loc_el in root.findall(f".//{ns}sitemap/{ns}loc"):
             if loc_el.text:
                 urls.append(loc_el.text.strip())
-    return urls
+    return urls, root.tag.endswith("sitemapindex")
 
-def expand_sitemaps( seed_sitemaps: list[str], max_depth: int = 25) -> list[str]:
+def expand_sitemaps(seed_sitemaps: list[str], max_depth: int = 25) -> list[str]:
     """
     BFS over sitemap idnex -> sitemap -> urls -> returns all discovered page URLs
     """
@@ -76,14 +101,22 @@ def expand_sitemaps( seed_sitemaps: list[str], max_depth: int = 25) -> list[str]
         seen.add(sm)
 
         try:
+            logger.info("Fetching sitemap: %s", sm)
             status, content, _ = fetch_bytes(sm)
             if status != 200:
+                logger.info("Sitemap status %s: %s", status, sm)
                 continue
-            items = parse_sitemap(content)
-        except Exception:
+            items, is_index = parse_sitemap(content)
+            logger.info("Parsed %d items from %s (index=%s)", len(items), sm, is_index)
+        except Exception as exc:
+            logger.warning(
+                "Failed to fetch/parse sitemap: %s (%s)",
+                sm,
+                exc.__class__.__name__,
+            )
             continue
 
-        if items and items[0].endswith(".xml", ".xml.gz", ".xml.bz2", ".xml.lzma", ".xml.tar", ".xml.tar.gz", ".xml.tar.bz2", ".xml.tar.lzma"):
+        if is_index:
             queue.extend(items)
         else:
             pages.extend(items)

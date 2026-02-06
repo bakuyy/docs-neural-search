@@ -3,98 +3,146 @@
 
 seeds:
   - domain: "docs.nvidia.com"
-    start_url: "https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/index.html"
+    start_urls:
+      - "https://docs.nvidia.com/deeplearning/nccl/user-guide/docs/index.html"
   - domain: "docs.docker.com"
-    start_url: "https://docs.docker.com/get-started/overview/"
+    start_urls:
+      - "https://docs.docker.com/get-started/overview/"
   - domain: "docs.pytorch.org"
-    start_url: "https://pytorch.org/docs/stable/index.html"
+    start_urls:
+      - "https://pytorch.org/docs/stable/index.html"
   - domain: "platform.openai.com"
-    start_url: "https://platform.openai.com/docs/overview"
+    start_urls:
+      - "https://platform.openai.com/docs/overview"
   - domain: "tensorflow.org"
-    start_url: "https://www.tensorflow.org/api_docs/python/tf/keras"
+    start_urls:
+      - "https://www.tensorflow.org/api_docs/python/tf/keras"
   - domain: "docs.aws.amazon.com"
-    start_url: "https://docs.aws.amazon.com"
+    start_urls:
+      - "https://docs.aws.amazon.com"
   - domain: "supabase.com"
-    start_url: "https://supabase.com/docs"
+    start_urls:
+      - "https://supabase.com/docs"
   - domain: "learning.postman.com"
-    start_url: "https://learning.postman.com/docs/introduction/overview"
+    start_urls:
+      - "https://learning.postman.com/docs/introduction/overview"
   - domain: "docs.mongodb.com"
-    start_url: "https://www.mongodb.com/docs/"
+    start_urls:
+      - "https://www.mongodb.com/docs/"
   - domain: "platform.claude.com"
-    start_url: "https://platform.claude.com/docs/en/home"
+    start_urls:
+      - "https://platform.claude.com/docs/en/home"
   - domain: "docs.pinecone.io"
-    start_url: "https://docs.pinecone.io/guides/get-started/overview"
+    start_urls:
+      - "https://docs.pinecone.io/guides/get-started/overview"
   - domain: "docs.stripe.com"
-    start_url: "https://docs.stripe.com/"                  
+    start_urls:
+      - "https://docs.stripe.com/"
   - domain: "docs.cloud.google.com"
-    start_url: "https://docs.cloud.google.com/docs"          
+    start_urls:
+      - "https://docs.cloud.google.com/docs"
   - domain: "firebase.google.com"
-    start_url: "https://firebase.google.com/docs"            
+    start_urls:
+      - "https://firebase.google.com/docs"
   - domain: "www.twilio.com"
-    start_url: "https://www.twilio.com/docs"                  
+    start_urls:
+      - "https://www.twilio.com/docs"
   - domain: "learn.microsoft.com"
-    start_url: "https://learn.microsoft.com/en-us/docs/"    
+    start_urls:
+      - "https://learn.microsoft.com/en-us/docs/"
   - domain: "developer.mozilla.org"
-    start_url: "https://developer.mozilla.org/en-US/"      
+    start_urls:
+      - "https://developer.mozilla.org/en-US/"
   - domain: "https://docs.github.com"
-    start_url: "https://docs.github.com/en"
+    start_urls:
+      - "https://docs.github.com/en"
   - domain: "kubernetes.io"
-    start_url: "https://kubernetes.io/docs/home"
+    start_urls:
+      - "https://kubernetes.io/docs/home"
   - domain: "docs.slack.com"
-    start_url: "https://api.slack.com/start"
+    start_urls:
+      - "https://api.slack.com/start"
   - domain: "docs.microsoft.com"
-    start_url: "https://learn.microsoft.com"
+    start_urls:
+      - "https://learn.microsoft.com"
   - domain: "firebase.google.com"
-    start_url: "https://firebase.google.com/docs"
+    start_urls:
+      - "https://firebase.google.com/docs"
   - domain: "developers.google.com"
-    start_url: "https://developers.google.com/docs"
+    start_urls:
+      - "https://developers.google.com/docs"
   - domain: "docs.hashicorp.com"
-    start_url: "https://www.hashicorp.com/products/terraform/docs"
+    start_urls:
+      - "https://www.hashicorp.com/products/terraform/docs"
   - domain: "docs.sentry.io"
-    start_url: "https://docs.sentry.io/"
+    start_urls:
+      - "https://docs.sentry.io/"
   - domain: "developer.twitter.com"
-    start_url: "https://developer.twitter.com/en/docs"
+    start_urls:
+      - "https://developer.twitter.com/en/docs"
   - domain: "developer.spotify.com"
-    start_url: "https://developer.spotify.com/documentation/web-api/"
+    start_urls:
+      - "https://developer.spotify.com/documentation/web-api/"
   - domain: "developers.google.com/maps"
-    start_url: "https://developers.google.com/maps/documentation"
+    start_urls:
+      - "https://developers.google.com/maps/documentation"
   - domain: "docs.ansible.com"
-    start_url: "https://docs.ansible.com/ansible/latest/index.html"
+    start_urls:
+      - "https://docs.ansible.com/ansible/latest/index.html"
   - domain: "docs.swift.org"
-    start_url: "https://docs.swift.org/swift-book/"
+    start_urls:
+      - "https://docs.swift.org/swift-book/"
   - domain: "docs.scala-lang.org"
-    start_url: "https://docs.scala-lang.org/"
+    start_urls:
+      - "https://docs.scala-lang.org/"
   - domain: "docs.djangoproject.com"
-    start_url: "https://docs.djangoproject.com/en/stable/"
+    start_urls:
+      - "https://docs.djangoproject.com/en/stable/"
   - domain: "developer.okta.com"
-    start_url: "https://developer.okta.com/docs/"
+    start_urls:
+      - "https://developer.okta.com/docs/"
   - domain: "platform.linkedin.com"
-    start_url: "https://docs.microsoft.com/linkedin/"
+    start_urls:
+      - "https://docs.microsoft.com/linkedin/"
   - domain: "docs.getpostman.com"
-    start_url: "https://learning.postman.com/docs/getting-started/introduction/"
+    start_urls:
+      - "https://learning.postman.com/docs/getting-started/introduction/"
   - domain: "developer.apple.com"
-    start_url: "https://developer.apple.com/documentation/"
+    start_urls:
+      - "https://developer.apple.com/documentation/"
   - domain: "docs.sonarcloud.io"
-    start_url: "https://docs.sonarcloud.io/"
+    start_urls:
+      - "https://docs.sonarcloud.io/"
   - domain: "docs.elastic.co"
-    start_url: "https://www.elastic.co/guide/index.html"
+    start_urls:
+      - "https://www.elastic.co/guide/index.html"
   - domain: "www.postgresql.org"
-    start_url: "https://www.postgresql.org/docs/"
+    start_urls:
+      - "https://www.postgresql.org/docs/"
   - domain: "docs.redis.com"
-    start_url: "https://docs.redis.com/latest/"
+    start_urls:
+      - "https://docs.redis.com/latest/"
   - domain: "docs.jenkins.io"
-    start_url: "https://www.jenkins.io/doc/"
+    start_urls:
+      - "https://www.jenkins.io/doc/"
   - domain: "docs.travis-ci.com"
-    start_url: "https://docs.travis-ci.com/"
+    start_urls:
+      - "https://docs.travis-ci.com/"
   - domain: "developer.mozilla.org"
-    start_url: "https://developer.mozilla.org/en-US/docs"
+    start_urls:
+      - "https://developer.mozilla.org/en-US/docs"
   - domain: "docs.vagrantup.com"
-    start_url: "https://developer.hashicorp.com/vagrant/docs"
+    start_urls:
+      - "https://developer.hashicorp.com/vagrant/docs"
   - domain: "docs.cypress.io"
-    start_url: "https://docs.cypress.io/"
+    start_urls:
+      - "https://docs.cypress.io/"
   - domain: "docs.vuejs.org"
-    start_url: "https://docs.vuejs.org/"
+    start_urls:
+      - "https://docs.vuejs.org/"
   - domain: "react.dev"
-    start_url: "https://react.dev/learn"
+    start_urls:
+      - "https://react.dev/learn"
   - domain: "nextjs.org"
-    start_url: "https://nextjs.org/docs"
+    start_urls:
+      - "https://nextjs.org/docs"

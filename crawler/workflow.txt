@@ -1,0 +1,5 @@
+for datasourcing: 
+    - load seed config (get domain and start urls)
+        - for each seed url, try the find sitemaps (publisher approved lists of canonical pages)
+            - these can exist as a sitemap idnex and urlset (datasource.py will detech which one)
+        - canonicalize each url / discovered url to prevent duplicate crawling
