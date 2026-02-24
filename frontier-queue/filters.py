@@ -5,7 +5,7 @@ from urllib.parse import  urlparse, urlunparse, parse_qsl, urlencode
 # define high level filters
 ALLOWED_PATHS = re.compile(r"/(docs?|documentation|learn|guide|guides|reference|api|manual)(/|$)", re.I)
 BAD_PATHS = re.compile(r"/(blog|pricing|about|careers|jobs|terms|privacy)")
-BAD_EXTENSIONS = re.compile(r"(\.pdf|\.docx|\.xlsx|\.pptx|\.doc|\.xls|\.ppt|\.txt|\.csv|\.json|\.xml|\.yaml|\.yml|\.ini|\.conf|\.log|\.err|\.out|\.log\.gz|\.log\.bz2|\.log\.xz|\.log\.lzma|\.log\.tar|\.log\.tar\.gz|\.log\.tar\.bz2|\.log\.tar\.xz|\.log\.tar\.lzma)")    
+BAD_EXTENSIONS = re.compile(r"(\.pdf|\.docx|\.xlsx|\.pptx|\.doc|\.xls|\.ppt|\.txt|\.csv|\.json\.|\.yaml|\.yml|\.ini|\.conf|\.log|\.err|\.out|\.log\.gz|\.log\.bz2|\.log\.xz|\.log\.lzma|\.log\.tar|\.log\.tar\.gz|\.log\.tar\.bz2|\.log\.tar\.xz|\.log\.tar\.lzma)")    
 
 def canonicalize_url(url: str) -> str:
     """
@@ -28,7 +28,11 @@ def canonicalize_url(url: str) -> str:
 
     """
     p = urlparse(url) #splits into components above
-    scheme = p.scheme.lower() if p.scheme else "https" 
+
+    if p.scheme not in ("http", "https"):
+        return False
+    
+    scheme = p.scheme.lower()
     netloc = p.netloc.lower() #host/port
     path = p.path or "/"
 

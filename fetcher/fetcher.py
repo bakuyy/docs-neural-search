@@ -1,3 +1,4 @@
+# fetches raw HTML given URL -> return FetchResult object
 from __future__ import annotations
 
 from dataclasses import dataclass
