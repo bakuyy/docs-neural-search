@@ -10,7 +10,7 @@ import openai
 import psycopg2
 from psycopg2.extras import execute_values
 
-from chunker.chunker import Chunk
+from pipeline.chunker.chunker import Chunk
 from dotenv import load_dotenv
 
 load_dotenv()

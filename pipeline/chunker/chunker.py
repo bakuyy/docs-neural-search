@@ -16,7 +16,7 @@ from dataclasses import dataclass
 from typing import List
 import re
 
-from fetcher.normalizer import Block, NormalizedDoc
+from pipeline.fetcher.normalizer import Block, NormalizedDoc
 
 
 MAX_TOKENS = 512
